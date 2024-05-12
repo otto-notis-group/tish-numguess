@@ -18,18 +18,18 @@ def genrate():
         import sys
         return rn.uniform(sys.float_info.max,sys.float_info.min),"Tip:Random float between sys.float_info.max and sys.float_info.min"
     else:return genrate()
-def numguess(n:float,target: float)-> str|Literal[""]:
+def numguess(n:str,target: str)-> str|Literal[""]:
     rtr=""
-    if n>target:
+    if float(n)>float(target):
         rtr+="Too high"
-    elif n<target:rtr+="Too low"
-    if len(str(int(n)))>len(str(int(target))):
+    elif float(n)<float(target):rtr+="Too low"
+    if len(str(int(float(n))))>len(str(int(float(target)))):
         rtr+= " and too long on int part"
     elif len(str(int(n)))<len(str(int(target))):
         rtr+= " and too short on int part"
-    if len(str(n).split(".")[1])>len(str(target).split(".")[1]):
+    if len(n.split(".")[1])>len(target.split(".")[1]):
         rtr+= " and too long on float part"
-    elif len(str(n).split(".")[1])<len(str(target).split(".")[1]):
+    elif len(n.split(".")[1])<len(target.split(".")[1]):
         rtr+= " and too short on float part"
     return rtr
 print("Welcome to the number guessing game!")
@@ -39,9 +39,9 @@ while True:
     while rrst:
         print(tip)
         print(f"Length:{len(str(tgt))}")
-        rst=float(input("Guess the number: "))
-        print(f"floated:{rst}")
-        rrst=numguess(rst,tgt)
+        rst=input("Guess the number: ")
+        print(f"floated:{float(rst)}")
+        rrst=numguess(rst,str(tgt))
         print(rrst)
     print("You guessed it!")
 
